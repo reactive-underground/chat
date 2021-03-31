@@ -18,4 +18,8 @@ export class Chat {
     public getMembers(): Member[] {
         return this.members;
     }
+
+    public addMember(member: Member): void {
+        this.members.push(member);
+    }
 }
