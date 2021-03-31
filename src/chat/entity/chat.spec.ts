@@ -19,4 +19,15 @@ describe('Chat', () => {
         expect(chat.getId()).toEqual(id);
         expect(chat.getMembers()).toEqual(members);
     });
+
+    describe("add member", () => {
+        it("should be add member", () => {
+            const chat = new Chat(new Id("123"), []);
+            const memberToAdd = new MemberBuilder().build()
+
+            chat.addMember(memberToAdd);
+            expect(chat.getMembers()).toHaveLength(1);
+            expect(chat.getMembers()[0]).toEqual(memberToAdd);
+        });
+    });
 });
