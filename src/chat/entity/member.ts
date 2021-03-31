@@ -1,11 +1,13 @@
-export class Member {
-    private readonly id: string;
+import { Id } from "./id";
 
-    constructor(id: string) {
+export class Member {
+    private readonly id: Id;
+
+    constructor(id: Id) {
         this.id = id;
     }
 
-    public getId(): string {
+    public getId(): Id {
         return this.id;
     }
 }
