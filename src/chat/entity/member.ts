@@ -10,4 +10,8 @@ export class Member {
     public getId(): Id {
         return this.id;
     }
+
+    public isEqualTo(member: Member): boolean {
+        return this.getId().getValue() === member.getId().getValue();
+    }
 }
