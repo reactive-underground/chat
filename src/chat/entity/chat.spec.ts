@@ -29,5 +29,20 @@ describe('Chat', () => {
             expect(chat.getMembers()).toHaveLength(1);
             expect(chat.getMembers()[0]).toEqual(memberToAdd);
         });
+
+        it("should be duplicate error", () => {
+            const chat = new Chat(new Id("123"), []);
+            const memberToAdd = new MemberBuilder().build()
+            const memberToAdd2 = new MemberBuilder().build()
+
+            chat.addMember(memberToAdd);
+            try {
+                chat.addMember(memberToAdd2);
+                fail("member duplicated");
+            } catch (e) {
+                expect(e).toBeInstanceOf(Error);
+                expect(e.message).toBe("Member already in this chat");
+            }
+        });
     });
 });
