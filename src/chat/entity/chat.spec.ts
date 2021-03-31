@@ -1,5 +1,6 @@
 import { Chat } from './chat';
 import { Member } from "./member";
+import { Id } from "./id";
 
 describe('Chat', () => {
     it('should be defined', () => {
@@ -8,11 +9,11 @@ describe('Chat', () => {
             new Member("2"),
             new Member("3")
         ];
-        const id = "000-2"
+        const id = new Id("000-2")
         const chat = new Chat(id, members);
 
         expect(chat).toBeDefined();
-        expect(chat.getId()).toBe(id);
+        expect(chat.getId()).toEqual(id);
         expect(chat.getMembers()).toEqual(members);
     });
 });
