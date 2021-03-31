@@ -7,6 +7,6 @@ describe('MemberBuilder', () => {
     const member = builder.build();
 
     expect(member).toBeInstanceOf(Member);
-    expect(member.getId()).toBe("test-1234");
+    expect(member.getId().getValue()).toBe("test-1234");
   });
 });
