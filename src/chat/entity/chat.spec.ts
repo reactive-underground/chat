@@ -1,13 +1,16 @@
 import { Chat } from './chat';
 import { Member } from "./member";
 import { Id } from "./id";
+import { MemberBuilder } from "../builder/member-builder";
 
 describe('Chat', () => {
     it('should be defined', () => {
-        const members = [
-            new Member("1"),
-            new Member("2"),
-            new Member("3")
+        const builder = new MemberBuilder();
+
+        const members: Member[] = [
+            builder.build(),
+            builder.build(),
+            builder.build(),
         ];
         const id = new Id("000-2")
         const chat = new Chat(id, members);
