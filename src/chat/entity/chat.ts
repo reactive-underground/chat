@@ -5,7 +5,7 @@ import { DomainException } from "node-exceptions";
 export class Chat {
 
     private readonly id: Id;
-    private readonly members: Member[];
+    private members: Member[];
 
     constructor(id: Id, members: Member[]) {
         this.id = id;
@@ -29,5 +29,9 @@ export class Chat {
             throw new DomainException("Member already in this chat");
         }
         this.members.push(member);
+    }
+
+    public removeMember(member: Member): void {
+        this.members = this.members.filter(item => !item.isEqualTo(member));
     }
 }
