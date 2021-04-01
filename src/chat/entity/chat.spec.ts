@@ -45,4 +45,15 @@ describe('Chat', () => {
             }
         });
     });
+
+    describe("hasMember", () => {
+        it("should be check exists", () => {
+            const chat = new Chat(new Id("123"), []);
+            const memberToAdd = new MemberBuilder().build();
+
+            expect(chat.hasMember(memberToAdd)).toBeFalsy();
+            chat.addMember(memberToAdd);
+            expect(chat.hasMember(memberToAdd)).toBeTruthy();
+        });
+    });
 });
