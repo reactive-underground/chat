@@ -19,6 +19,10 @@ export class Chat {
         return this.members;
     }
 
+    public hasMember(member: Member): boolean {
+        return this.getMembers().some(item => item.isEqualTo(member));
+    }
+
     public addMember(member: Member): void {
         const exists = this.members.some(item => item.isEqualTo(member));
         if(exists) {
