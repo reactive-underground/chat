@@ -1,15 +1,18 @@
 import { Member } from "./member";
 import { Id } from "./id";
 import { DomainException } from "node-exceptions";
+import { Message } from "./message";
 
 export class Chat {
 
     private readonly id: Id;
     private members: Member[];
+    private readonly messages: Message[];
 
-    constructor(id: Id, members: Member[]) {
+    constructor(id: Id, members: Member[], messages: Message[] = []) {
         this.id = id;
         this.members = members;
+        this.messages = messages;
     }
 
     public getId(): Id {
@@ -18,6 +21,10 @@ export class Chat {
 
     public getMembers(): Member[] {
         return [...this.members];
+    }
+
+    public getMessages(): Message[] {
+        return [...this.messages];
     }
 
     public hasMember(member: Member): boolean {
@@ -29,6 +36,10 @@ export class Chat {
             throw new DomainException("Member already in this chat");
         }
         this.members.push(member);
+    }
+
+    public addMessage(message: Message): void {
+        this.messages.push(message);
     }
 
     public removeMember(member: Member): void {
