@@ -39,6 +39,9 @@ export class Chat {
     }
 
     public addMessage(message: Message): void {
+        if(!this.hasMember(message.getSender())) {
+            throw new DomainException("Message sender is not member of the chat");
+        }
         this.messages.push(message);
     }
 
