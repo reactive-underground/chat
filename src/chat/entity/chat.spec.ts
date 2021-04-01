@@ -5,6 +5,7 @@ import { MemberBuilder } from "../builder/member-builder";
 import { DomainException } from "node-exceptions";
 import { ChatBuilder } from "../builder/chat-builder";
 import { Message } from "./message";
+import { MessageBuilder } from "../builder/message-builder";
 
 describe('Chat', () => {
     it('should be defined', () => {
@@ -86,9 +87,8 @@ describe('Chat', () => {
         it("should be add message", () => {
             const member = new MemberBuilder().build();
             const chat = new ChatBuilder().withMembers([member]).build();
-            const date = new Date("2000-01-01");
 
-            const message = new Message(new Id("123"), "Hello world", member, date);
+            const message = new MessageBuilder().build();
 
             chat.addMessage(message);
 
@@ -98,9 +98,8 @@ describe('Chat', () => {
 
         it("should be throw exception if sender is not chat member", () => {
             const chat = new ChatBuilder().build();
-            const member = new MemberBuilder().build();
 
-            const message = new Message(new Id("123"), "Hello world", member, new Date());
+            const message = new MessageBuilder().build();
             try {
                 chat.addMessage(message);
                 fail("sender is not member of the chat");
