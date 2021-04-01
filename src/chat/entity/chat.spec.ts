@@ -3,6 +3,8 @@ import { Member } from "./member";
 import { Id } from "./id";
 import { MemberBuilder } from "../builder/member-builder";
 import { DomainException } from "node-exceptions";
+import { ChatBuilder } from "../builder/chat-builder";
+import { Message } from "./message";
 
 describe('Chat', () => {
     it('should be defined', () => {
@@ -79,4 +81,19 @@ describe('Chat', () => {
             expect(chat.getMembers()).toContainEqual(member);
         });
     })
+
+    describe("addMessage", () => {
+        it("should be add message", () => {
+            const chat = new ChatBuilder().build();
+            const member = new MemberBuilder().build();
+            const date = new Date("2000-01-01");
+
+            const message = new Message(new Id("123"), "Hello world", member, date);
+
+            chat.addMessage(message);
+
+            expect(chat.getMessages()).toHaveLength(1);
+            expect(chat.getMessages()).toContainEqual(message);
+        });
+    });
 });
