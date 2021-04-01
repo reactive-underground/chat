@@ -2,6 +2,7 @@ import { Chat } from './chat';
 import { Member } from "./member";
 import { Id } from "./id";
 import { MemberBuilder } from "../builder/member-builder";
+import { DomainException } from "node-exceptions";
 
 describe('Chat', () => {
     it('should be defined', () => {
@@ -40,7 +41,7 @@ describe('Chat', () => {
                 chat.addMember(memberToAdd2);
                 fail("member duplicated");
             } catch (e) {
-                expect(e).toBeInstanceOf(Error);
+                expect(e).toBeInstanceOf(DomainException);
                 expect(e.message).toBe("Member already in this chat");
             }
         });
