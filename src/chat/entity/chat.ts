@@ -24,8 +24,7 @@ export class Chat {
     }
 
     public addMember(member: Member): void {
-        const exists = this.members.some(item => item.isEqualTo(member));
-        if(exists) {
+        if(this.hasMember(member)) {
             throw new Error("Member already in this chat");
         }
         this.members.push(member);
