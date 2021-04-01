@@ -95,5 +95,19 @@ describe('Chat', () => {
             expect(chat.getMessages()).toHaveLength(1);
             expect(chat.getMessages()).toContainEqual(message);
         });
+
+        it("should be throw exception if sender is not chat member", () => {
+            const chat = new ChatBuilder().build();
+            const member = new MemberBuilder().build();
+
+            const message = new Message(new Id("123"), "Hello world", member, new Date());
+            try {
+                chat.addMessage(message);
+                fail("sender is not member of the chat");
+            } catch (e) {
+                expect(e).toBeInstanceOf(DomainException);
+                expect(e.message).toBe("Message sender is not member of the chat");
+            }
+        });
     });
 });
