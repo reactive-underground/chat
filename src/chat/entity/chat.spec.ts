@@ -84,8 +84,8 @@ describe('Chat', () => {
 
     describe("addMessage", () => {
         it("should be add message", () => {
-            const chat = new ChatBuilder().build();
             const member = new MemberBuilder().build();
+            const chat = new ChatBuilder().withMembers([member]).build();
             const date = new Date("2000-01-01");
 
             const message = new Message(new Id("123"), "Hello world", member, date);
