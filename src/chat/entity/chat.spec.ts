@@ -57,4 +57,13 @@ describe('Chat', () => {
             expect(chat.hasMember(memberToAdd)).toBeTruthy();
         });
     });
+
+    describe("removeMember", () => {
+        const member = new MemberBuilder().build();
+        const chat = new Chat(new Id("123"), [member]);
+
+        chat.removeMember(member);
+        expect(chat.getMembers()).toHaveLength(0);
+        expect(chat.getMembers()).not.toContainEqual(member);
+    });
 });
