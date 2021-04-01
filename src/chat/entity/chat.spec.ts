@@ -88,7 +88,7 @@ describe('Chat', () => {
             const member = new MemberBuilder().build();
             const chat = new ChatBuilder().withMembers([member]).build();
 
-            const message = new MessageBuilder().build();
+            const message = new MessageBuilder().withSender(member).build();
 
             chat.addMessage(message);
 
