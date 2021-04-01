@@ -1,5 +1,6 @@
 import { Member } from "./member";
 import { Id } from "./id";
+import { DomainException } from "node-exceptions";
 
 export class Chat {
 
@@ -25,7 +26,7 @@ export class Chat {
 
     public addMember(member: Member): void {
         if(this.hasMember(member)) {
-            throw new Error("Member already in this chat");
+            throw new DomainException("Member already in this chat");
         }
         this.members.push(member);
     }
