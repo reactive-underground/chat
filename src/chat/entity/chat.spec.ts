@@ -68,4 +68,15 @@ describe('Chat', () => {
             expect(chat.getMembers()).not.toContainEqual(member);
         });
     });
+
+    describe("immutable getMembers", () => {
+        it("should be not remove member from chat", () => {
+            const member = new MemberBuilder().build();
+            const chat = new Chat(new Id("123"), [member]);
+
+            chat.getMembers().splice(0, 1);
+            expect(chat.getMembers()).toHaveLength(1);
+            expect(chat.getMembers()).toContainEqual(member);
+        });
+    })
 });
