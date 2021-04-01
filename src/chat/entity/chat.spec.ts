@@ -109,4 +109,17 @@ describe('Chat', () => {
             }
         });
     });
+
+    describe("immutable getMessages", () => {
+        it("should be not remove message from chat", () => {
+            const member = new MemberBuilder().build();
+            const chat = new ChatBuilder().withMembers([member]).build();
+
+            const message = new MessageBuilder().withSender(member).build();
+            chat.addMessage(message);
+            chat.getMessages().splice(0, 1);
+            expect(chat.getMessages()).toHaveLength(1);
+            expect(chat.getMessages()).toContainEqual(message);
+        });
+    })
 });
