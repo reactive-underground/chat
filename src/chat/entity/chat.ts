@@ -17,7 +17,7 @@ export class Chat {
     }
 
     public getMembers(): Member[] {
-        return this.members;
+        return [...this.members];
     }
 
     public hasMember(member: Member): boolean {
